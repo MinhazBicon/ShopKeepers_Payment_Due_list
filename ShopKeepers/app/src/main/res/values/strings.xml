@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">ShopKeepers</string>
+    <string name="btn_txt1">Sign Up</string>
+    <string name="btn_txt2">Log In</string>
+    <string name="btn_txt3">Enter Name</string>
+    <string name="btn_txt4">Password</string>
+    <string name="btn_txt5">Forget password click</string>
+    <string name="btn_txt6">Sign Up Here</string>
+    <string name="btn_txt7">ShopKeepers</string>
+    <string name="btn_txt8">ShopKeepers</string>
+    <string name="btn_txt9">ShopKeepers</string>
+    <string name="btn_txt10">ShopKeepers</string>
+    <string name="btn_txt11">ShopKeepers</string>
+    <string name="btn_txt12">ShopKeepers</string>
+    <string name="btn_txt13">ShopKeepers</string>
+    <string name="btn_txt14">ShopKeepers</string>
+    <string name="btn_txt15">ShopKeepers</string>
+    <string name="btn_txt16">ShopKeepers</string>
+    <string name="btn_txt17">ShopKeepers</string>
+
+</resources>

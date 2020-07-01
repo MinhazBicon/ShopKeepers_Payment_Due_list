@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="4"
+    android:background="@drawable/background1"
+    tools:context=".LoginActivity">
+
+     <LinearLayout
+         android:layout_weight=".9"
+         android:layout_width="match_parent"
+         android:gravity="center"
+         android:layout_height="match_parent">
+
+         <TextView
+             android:id="@+id/ShopKeeperLogo"
+             android:gravity="center"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:textAlignment="center"
+             android:textColor="#ffe"
+             android:textSize="30sp"
+             android:text="@string/btn_txt6"
+             android:background="@drawable/background3_shape"
+             />
+
+
+     </LinearLayout>
+
+
+     <LinearLayout
+         android:layout_weight="1"
+         android:layout_width="match_parent"
+         android:layout_marginLeft="30dp"
+         android:layout_marginTop="15dp"
+         android:weightSum="2"
+         android:layout_marginRight="30dp"
+         android:orientation="vertical"
+         android:layout_height="match_parent">
+
+         <EditText
+             android:layout_weight="1"
+             android:padding="12dp"
+             android:layout_margin="10dp"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             android:background="@drawable/background1_shape"
+             android:textSize="20sp"
+             android:textColor="#F6F9FA"
+             android:textStyle="normal"
+             android:inputType="text"
+             android:hint="@string/btn_txt3"
+             android:textColorHint="#ffe"
+             />
+         <EditText
+             android:layout_weight="1"
+             android:padding="12dp"
+             android:layout_margin="10dp"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             android:background="@drawable/background1_shape"
+             android:textSize="20sp"
+             android:textColor="#F6F9FA"
+             android:textStyle="normal"
+             android:inputType="textPassword"
+             android:hint="@string/btn_txt4"
+             android:textColorHint="#ffe"
+             />
+
+
+     </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_weight="1"
+        android:weightSum="2"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:padding="5dp"
+        android:layout_marginBottom="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:layout_weight="1"
+            android:layout_margin="35dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="normal"
+            android:background="@drawable/background1_shape"
+            android:textColor="#F2F8F7"
+            android:textAllCaps="false"
+            android:textAlignment="center"
+            android:text="@string/btn_txt1"
+            android:textSize="20sp"
+            />
+        <Button
+            android:layout_weight="1"
+            android:layout_margin="35dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="normal"
+            android:background="@drawable/background1_shape"
+            android:textColor="#F2F8F7"
+            android:textAllCaps="false"
+            android:textAlignment="center"
+            android:text="@string/btn_txt2"
+            android:textSize="20sp"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_weight="1.1"
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:layout_margin="35dp"
+        android:layout_height="match_parent">
+
+        <Button
+            android:layout_marginStart="2dp"
+            android:layout_marginEnd="70dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="normal"
+            android:background="@drawable/background2_shape"
+            android:textColor="#F2F8F7"
+            android:textAllCaps="false"
+            android:textAlignment="center"
+            android:text="@string/btn_txt5"
+            android:textSize="20sp"/>
+
+    </LinearLayout>
+
+
+
+</LinearLayout>
