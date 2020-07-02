@@ -3,6 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="#ACFAEF"
+    android:gravity="center"
     android:weightSum="8">
 
     <LinearLayout
@@ -22,7 +24,7 @@
             android:textStyle="bold|italic"
             android:textColor="#ffe"
             android:textIsSelectable="true"
-            android:textSize="30sp"
+            android:textSize="20sp"
             android:text="@string/btn_txt6"
             />
 
@@ -38,30 +40,146 @@
 
         <EditText
             android:layout_weight="1"
+            android:layout_margin="10dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/background1_shape"
+            android:textColor="#ffe"
+            android:textColorHint="#ffe"
+            android:hint="@string/btn_txt9"
+            android:textAlignment="center"
+            android:textIsSelectable="true"
+            android:textSize="17sp"
+            android:textStyle="normal"
             />
-        <EditText
-            android:layout_weight="1"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
-        <EditText
-            android:layout_weight="1"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
-        <EditText
-            android:layout_weight="1"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
 
+        <EditText
+            android:layout_weight="1"
+            android:layout_margin="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/background1_shape"
+            android:textColor="#ffe"
+            android:textColorHint="#ffe"
+            android:hint="@string/btn_txt10"
+            android:textAlignment="center"
+            android:textIsSelectable="true"
+            android:textSize="17sp"
+            android:textStyle="normal"
+            />
+
+        <EditText
+            android:layout_weight="1"
+            android:layout_margin="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/background1_shape"
+            android:textColor="#ffe"
+            android:textColorHint="#ffe"
+            android:hint="@string/btn_txt11"
+            android:textAlignment="center"
+            android:textIsSelectable="true"
+            android:textSize="17sp"
+            android:textStyle="normal"
+            />
+
+        <EditText
+            android:layout_weight="1"
+            android:layout_margin="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/background1_shape"
+            android:textColor="#ffe"
+            android:textColorHint="#ffe"
+            android:hint="@string/btn_txt12"
+            android:textAlignment="center"
+            android:textIsSelectable="true"
+            android:textSize="17sp"
+            android:textStyle="normal"
+            />
+
+        <EditText
+            android:layout_weight="1"
+            android:layout_margin="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/background1_shape"
+            android:textColor="#ffe"
+            android:textColorHint="#ffe"
+            android:hint="@string/btn_txt13"
+            android:textAlignment="center"
+            android:textIsSelectable="true"
+            android:textSize="17sp"
+            android:textStyle="normal"
+            />
+
+        <EditText
+            android:layout_weight="1"
+            android:layout_margin="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/background1_shape"
+            android:textColor="#ffe"
+            android:textColorHint="#ffe"
+            android:hint="@string/btn_txt14"
+            android:textAlignment="center"
+            android:textIsSelectable="true"
+            android:textSize="17sp"
+            android:textStyle="normal"
+            />
+
+        <EditText
+            android:layout_weight="1"
+            android:layout_margin="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/background1_shape"
+            android:textColor="#ffe"
+            android:textColorHint="#ffe"
+            android:hint="@string/btn_txt15"
+            android:textAlignment="center"
+            android:textIsSelectable="true"
+            android:textSize="17sp"
+            android:textStyle="normal"
+            />
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_weight="3.5"
+        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_margin="15dp"
+        android:weightSum="2">
+
+        <Button
+            android:id="@+id/signUp_cancel_btn"
+            android:layout_weight="1"
+            android:layout_marginRight="2dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/background4_shape"
+            android:textSize="15sp"
+            android:textColor="#ffe"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:text="@string/btn_txt7"
+            />
+
+        <Button
+            android:id="@+id/signUp_done_btn"
+            android:layout_weight="1"
+            android:layout_marginLeft="2dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/background4_shape"
+            android:textSize="15sp"
+            android:textColor="#ffe"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:text="@string/btn_txt8"
+            />
 
 
     </LinearLayout>

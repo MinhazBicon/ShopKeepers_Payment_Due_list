@@ -6,15 +6,15 @@
     <string name="btn_txt4">Password</string>
     <string name="btn_txt5">Forget password click</string>
     <string name="btn_txt6">Sign Up Here</string>
-    <string name="btn_txt7">ShopKeepers</string>
-    <string name="btn_txt8">ShopKeepers</string>
-    <string name="btn_txt9">ShopKeepers</string>
-    <string name="btn_txt10">ShopKeepers</string>
-    <string name="btn_txt11">ShopKeepers</string>
-    <string name="btn_txt12">ShopKeepers</string>
-    <string name="btn_txt13">ShopKeepers</string>
-    <string name="btn_txt14">ShopKeepers</string>
-    <string name="btn_txt15">ShopKeepers</string>
+    <string name="btn_txt7">Cancel</string>
+    <string name="btn_txt8">Done</string>
+    <string name="btn_txt9">Name</string>
+    <string name="btn_txt10">User Name</string>
+    <string name="btn_txt11">Password</string>
+    <string name="btn_txt12">Confirm Password</string>
+    <string name="btn_txt13">What is your pet name? </string>
+    <string name="btn_txt14">What do you like most?</string>
+    <string name="btn_txt15">What is your favourite hobby?</string>
     <string name="btn_txt16">ShopKeepers</string>
     <string name="btn_txt17">ShopKeepers</string>
 
