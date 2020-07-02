@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_weight="8.5"
+    android:padding="10dp"
+    android:background="@drawable/background1"
+    tools:context=".CustomerDetails_Entry">
+
+    <LinearLayout
+        android:layout_weight="1.8"
+        android:gravity="center"
+        android:padding="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:padding="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/cardview_background1"
+            android:textAlignment="center"
+            android:textIsSelectable="true"
+            android:textSize="30sp"
+            android:inputType="text"
+            android:textColor="#ffe"
+            android:textStyle="bold"
+            android:text="Name"
+
+            />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_weight="1.3"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="15dp"
+        android:layout_marginTop="5dp"
+        android:weightSum="4"
+        android:layout_height="match_parent">
+
+
+        <EditText
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:background="@drawable/cardview_background2"
+            android:textColor="#ffe"
+            android:textStyle="normal"
+            android:textAlignment="textStart"
+            android:textSize="25sp"
+            android:hint="Name"
+            android:textColorHint="#ffe"
+            android:inputType="textPersonName"
+            />
+
+        <EditText
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:background="@drawable/cardview_background2"
+            android:textColor="#ffe"
+            android:textStyle="normal"
+            android:textAlignment="textStart"
+            android:textSize="25sp"
+            android:hint="Amount"
+            android:textColorHint="#ffe"
+            android:inputType="numberSigned"
+            />
+
+        <EditText
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:background="@drawable/cardview_background2"
+            android:textColor="#ffe"
+            android:textStyle="normal"
+            android:textAlignment="textStart"
+            android:textSize="25sp"
+            android:hint="Item Description"
+            android:textColorHint="#ffe"
+            android:inputType="text"
+            />
+
+        <EditText
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:background="@drawable/cardview_background2"
+            android:textColor="#ffe"
+            android:textStyle="normal"
+            android:textAlignment="textStart"
+            android:textSize="25sp"
+            android:hint="Date"
+            android:textColorHint="#ffe"
+            android:inputType="date"
+            />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_weight="1.8"
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:layout_height="match_parent">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#ffe"
+            android:textSize="25sp"
+            android:textAlignment="center"
+            android:textStyle="normal"
+            android:textAllCaps="false"
+            android:background="@drawable/background5_shape"
+            android:text="@string/btn_txt17"
+            />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_weight="1.8"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:padding="15dp"
+        android:orientation="horizontal"
+        android:weightSum="3">
+
+        <TextView
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:background="@drawable/cardview_background1"
+            android:textStyle="bold"
+            android:textAlignment="textStart"
+            android:textSize="25sp"
+            android:textColor="#ffe"
+            android:text="Total"
+            android:inputType="text"
+            />
+        <TextView
+            android:layout_weight="2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:background="@drawable/cardview_background2"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:textSize="25sp"
+            android:textColor="#ffe"
+            android:text="Amount"
+            android:inputType="numberSigned"
+            />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_weight="1.8"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        android:layout_margin="30dp"
+        android:padding="10dp"
+        android:gravity="center">
+
+        <Button
+            android:layout_weight="1"
+            android:gravity="center"
+            android:layout_marginRight="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:textColor="#ffe"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            android:text="+"
+            android:background="@drawable/cardview_background2"
+            />
+        <Button
+            android:layout_weight="1"
+            android:gravity="center"
+            android:layout_marginLeft="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:textColor="#ffe"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            android:text="-"
+            android:background="@drawable/cardview_background2"
+            />
+
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

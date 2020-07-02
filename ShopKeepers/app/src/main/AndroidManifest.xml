@@ -9,7 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".LoginActivity"
+        <activity android:name=".CustomerDetails_Entry"></activity>
+        <activity android:name=".Customer_List_Activity" />
+        <activity
+            android:name=".LoginActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -17,10 +20,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SignUp_PopUp_Window"
+        <activity
+            android:name=".SignUp_PopUp_Window"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.PopUpTheme">
-        </activity>
+            android:theme="@style/AppTheme.PopUpTheme" />
     </application>
 
 </manifest>

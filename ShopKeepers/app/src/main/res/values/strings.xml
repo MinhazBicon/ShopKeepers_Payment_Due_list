@@ -15,7 +15,16 @@
     <string name="btn_txt13">What is your pet name? </string>
     <string name="btn_txt14">What do you like most?</string>
     <string name="btn_txt15">What is your favourite hobby?</string>
-    <string name="btn_txt16">ShopKeepers</string>
-    <string name="btn_txt17">ShopKeepers</string>
+    <string name="btn_txt16">Add Customer</string>
+    <string name="btn_txt17">Submit</string>
+    <string name="btn_txt18">Submit</string>
+    <string name="btn_txt19">Submit</string>
+    <string name="btn_txt20">Submit</string>
+    <string name="btn_txt21">Submit</string>
+    <string name="btn_txt22">Submit</string>
+    <string name="btn_txt23">Submit</string>
+    <string name="btn_txt24">Submit</string>
+    <string name="btn_txt25">Submit</string>
+    <string name="btn_txt26">Submit</string>
 
 </resources>
