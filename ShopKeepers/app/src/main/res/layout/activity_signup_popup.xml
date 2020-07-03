@@ -73,7 +73,7 @@
             />
 
         <EditText
-            
+            android:id="@+id/signUpPage_Password"
             android:layout_weight="1"
             android:layout_margin="10dp"
             android:layout_width="match_parent"
@@ -81,6 +81,7 @@
             android:background="@drawable/background1_shape"
             android:textColor="#ffe"
             android:textColorHint="#ffe"
+            android:inputType="textPassword"
             android:hint="@string/btn_txt11"
             android:textAlignment="center"
             android:textIsSelectable="true"
@@ -89,6 +90,7 @@
             />
 
         <EditText
+            android:id="@+id/signUpPage_Confirm_Password"
             android:layout_weight="1"
             android:layout_margin="10dp"
             android:layout_width="match_parent"
@@ -96,6 +98,7 @@
             android:background="@drawable/background1_shape"
             android:textColor="#ffe"
             android:textColorHint="#ffe"
+            android:inputType="textPassword"
             android:hint="@string/btn_txt12"
             android:textAlignment="center"
             android:textIsSelectable="true"
@@ -104,6 +107,7 @@
             />
 
         <EditText
+            android:id="@+id/SignUpPage_FAQ1"
             android:layout_weight="1"
             android:layout_margin="10dp"
             android:layout_width="match_parent"
@@ -111,6 +115,7 @@
             android:background="@drawable/background1_shape"
             android:textColor="#ffe"
             android:textColorHint="#ffe"
+            android:inputType="text"
             android:hint="@string/btn_txt13"
             android:textAlignment="center"
             android:textIsSelectable="true"
@@ -119,6 +124,7 @@
             />
 
         <EditText
+            android:id="@+id/SignUpPage_FAQ2"
             android:layout_weight="1"
             android:layout_margin="10dp"
             android:layout_width="match_parent"
@@ -126,6 +132,7 @@
             android:background="@drawable/background1_shape"
             android:textColor="#ffe"
             android:textColorHint="#ffe"
+            android:inputType="text"
             android:hint="@string/btn_txt14"
             android:textAlignment="center"
             android:textIsSelectable="true"
@@ -134,6 +141,7 @@
             />
 
         <EditText
+            android:id="@+id/SignUpPage_FAQ3"
             android:layout_weight="1"
             android:layout_margin="10dp"
             android:layout_width="match_parent"
@@ -141,6 +149,7 @@
             android:background="@drawable/background1_shape"
             android:textColor="#ffe"
             android:textColorHint="#ffe"
+            android:inputType="text"
             android:hint="@string/btn_txt15"
             android:textAlignment="center"
             android:textIsSelectable="true"
@@ -159,7 +168,7 @@
         android:weightSum="2">
 
         <Button
-            android:id="@+id/signUp_cancel_btn"
+            android:id="@+id/signUpPage_Cancel_btn"
             android:layout_weight="1"
             android:layout_marginRight="2dp"
             android:layout_width="match_parent"
@@ -173,7 +182,7 @@
             />
 
         <Button
-            android:id="@+id/signUp_done_btn"
+            android:id="@+id/signUpPage_Done_btn"
             android:layout_weight="1"
             android:layout_marginLeft="2dp"
             android:layout_width="match_parent"
