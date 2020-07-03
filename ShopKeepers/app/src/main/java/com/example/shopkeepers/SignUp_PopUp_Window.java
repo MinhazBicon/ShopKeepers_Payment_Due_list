@@ -11,7 +11,6 @@ import android.widget.Button;
 import androidx.annotation.Nullable;
 
 public class SignUp_PopUp_Window extends Activity implements View.OnClickListener {
-    //int flag = #ACFAEF;
     private Button cancel, done;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

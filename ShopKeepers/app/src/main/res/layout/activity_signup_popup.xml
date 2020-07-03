@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#ACFAEF"
+    android:background="#ACEDC7"
     android:gravity="center"
     android:weightSum="8">
 
@@ -39,12 +39,14 @@
         android:layout_height="match_parent">
 
         <EditText
+            android:id="@+id/signUpPage_name_id"
             android:layout_weight="1"
             android:layout_margin="10dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/background1_shape"
             android:textColor="#ffe"
+            android:inputType="text"
             android:textColorHint="#ffe"
             android:hint="@string/btn_txt9"
             android:textAlignment="center"
@@ -54,6 +56,7 @@
             />
 
         <EditText
+            android:id="@+id/signUpPage_userName_id"
             android:layout_weight="1"
             android:layout_margin="10dp"
             android:layout_width="match_parent"
@@ -61,6 +64,7 @@
             android:background="@drawable/background1_shape"
             android:textColor="#ffe"
             android:textColorHint="#ffe"
+            android:inputType="text"
             android:hint="@string/btn_txt10"
             android:textAlignment="center"
             android:textIsSelectable="true"
@@ -69,6 +73,7 @@
             />
 
         <EditText
+            
             android:layout_weight="1"
             android:layout_margin="10dp"
             android:layout_width="match_parent"

@@ -26,10 +26,7 @@
              android:text="Shopkeepers"
              android:background="@drawable/background3_shape"
              />
-
-
      </LinearLayout>
-
 
      <LinearLayout
          android:layout_weight="1"
@@ -42,6 +39,7 @@
          android:layout_height="match_parent">
 
          <EditText
+             android:id="@+id/loginPage_name_id"
              android:layout_weight="1"
              android:padding="12dp"
              android:layout_margin="10dp"
@@ -56,6 +54,7 @@
              android:textColorHint="#ffe"
              />
          <EditText
+             android:id="@+id/loginPage_password_id"
              android:layout_weight="1"
              android:padding="12dp"
              android:layout_margin="10dp"
@@ -85,7 +84,7 @@
         android:layout_height="match_parent">
 
         <Button
-            android:id="@+id/Login_signUp_btn"
+            android:id="@+id/LoginPage_signUp_btn"
             android:layout_weight="1"
             android:layout_margin="35dp"
             android:layout_width="wrap_content"
@@ -123,6 +122,7 @@
         android:layout_height="match_parent">
 
         <Button
+            android:id="@+id/LoginPage_forgetPass_btn"
             android:layout_marginStart="2dp"
             android:layout_marginEnd="70dp"
             android:layout_width="match_parent"

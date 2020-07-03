@@ -9,8 +9,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".CustomerDetails_Entry"></activity>
-        <activity android:name=".Customer_List_Activity" />
         <activity
             android:name=".LoginActivity"
             android:screenOrientation="portrait">
@@ -24,6 +22,12 @@
             android:name=".SignUp_PopUp_Window"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.PopUpTheme" />
+        <activity android:name=".CustomerDetails_Show" />
+        <activity android:name=".Customer_List_Activity" />
+        <activity android:name=".Customer_Details_Edit_PopUp"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.PopUpTheme">
+        </activity>
     </application>
 
 </manifest>

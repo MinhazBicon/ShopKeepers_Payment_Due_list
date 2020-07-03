@@ -33,6 +33,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         shopkeeperLogo.setTypeface(font);
 
         SignUp.setOnClickListener(this);
+        Login.setOnClickListener(this);
     }
 
     @Override
@@ -40,7 +41,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         if (view == SignUp){
             Intent intent = new Intent(LoginActivity.this, SignUp_PopUp_Window.class);
             startActivity(intent);
-
+        }
+        if (view == Login){
+            Intent intent = new Intent(LoginActivity.this, Customer_Details_Edit_PopUp.class);
+            startActivity(intent);
         }
     }
 }
