@@ -21,12 +21,14 @@
         <activity
             android:name=".SignUp_PopUp_Window"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.PopUpTheme" />
-        <activity android:name=".CustomerDetails_Show" />
-        <activity android:name=".Customer_List_Activity" />
+            android:theme="@style/AppTheme.PopUpTheme1" />
+        <activity android:name=".CustomerDetails_Show"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Customer_List_Activity"
+            android:screenOrientation="portrait"/>
         <activity android:name=".Customer_Details_Edit_PopUp"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.PopUpTheme">
+            android:theme="@style/AppTheme.PopUpTheme2">
         </activity>
     </application>
 
