@@ -65,18 +65,16 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
               Toast.makeText(getApplicationContext(),"Please Enter User Name and Password",Toast.LENGTH_LONG).show();
           }
           else {
-              boolean result = mySQL_dataBase_helper.ShopKeeper_Identity_Check(ShopKeeper_UserName,ShopKeeper_Password);
-              if (result == true){
+              boolean result = mySQL_dataBase_helper.ShopKeeper_Identity_Check(ShopKeeper_UserName, ShopKeeper_Password);
+              if (result == true) {
 
-                  startActivity(new Intent(LoginActivity.this,Customer_List_Activity.class));
+                  startActivity(new Intent(LoginActivity.this, Customer_List_Activity.class));
 
-              }else {
-
-                  Toast.makeText(getApplicationContext(),"Incorrect User Name or Password",Toast.LENGTH_LONG).show();
+              } else {
+                  Toast.makeText(getApplicationContext(), "Incorrect User Name or Password", Toast.LENGTH_LONG).show();
                   LoginPage_UserName.setText("");
                   LoginPage_password.setText("");
               }
-
           }
         }
     }

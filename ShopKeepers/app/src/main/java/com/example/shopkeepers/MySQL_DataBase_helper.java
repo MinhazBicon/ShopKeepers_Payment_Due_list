@@ -13,18 +13,44 @@ public class MySQL_DataBase_helper extends SQLiteOpenHelper {
     private static final String DATA_BASE_NAME = "ShopKeepers_Payment_dueList.db";
     // DataBase Table1 Name and Column Name
     private static final String TABLE_NAME1 = "Shopkeeper_UserDetails";
-    private static final String ID = "_ID";
+    private static final String SHOPKEEPER_ID = "ID";
     private static final String SHOPKEEPER_NAME = "Shopkeeper_Name";
     private static final String SHOPKEEPER_USER_NAME = "Shopkeeper_User_Name";
     private static final String PASSWORD = "Password";
     private static final String FAQ1 = "FAQ1";
     private static final String FAQ2 = "FAQ2";
     private static final String FAQ3 = "FAQ3";
-    private static  final String CREATE_TABLE1 = "CREATE TABLE " +TABLE_NAME1+ "( "+ID+" INTEGER PRIMARY KEY AUTOINCREMENT, " +SHOPKEEPER_NAME+ " VARCHAR(255) NOT NULL,"
-                          +SHOPKEEPER_USER_NAME+ " TEXT NOT NULL," +PASSWORD+ " TEXT NOT NULL, " +FAQ1+ " TEXT NOT NULL," +FAQ2+ " TEXT NOT NULL," +FAQ3+ " TEXT NOT NULL);";
-    private static final String DROP_TABLE1 = "DROP TABLE IF EXISTS "+TABLE_NAME1;
+    private static  final String CREATE_TABLE1 = " CREATE TABLE " + TABLE_NAME1 + "( "+ SHOPKEEPER_ID +" INTEGER PRIMARY KEY AUTOINCREMENT, "
+                                                 + SHOPKEEPER_NAME + " VARCHAR(255) NOT NULL,"
+                                                 + SHOPKEEPER_USER_NAME + " TEXT NOT NULL," + PASSWORD + " TEXT NOT NULL, " +FAQ1+ " TEXT NOT NULL,"
+                                                 +FAQ2+ " TEXT NOT NULL," +FAQ3+ " TEXT NOT NULL);";
+    private static final String DROP_TABLE1 = " DROP TABLE IF EXISTS "+TABLE_NAME1;
 
-    private static final  int VERSION_NUMBER =4;
+    //Database Table2 Name and Column Name
+    private static final String TABLE_NAME2 = "Customer_List";
+    private static final String CUSTOMER_LIST_ID = "ID";
+    private static final String CUSTOMER_NAME = "Customer_Name";
+    private static final String TOTAL_AMOUNT = "Total_Amount";
+    private static final String CREATE_TABLE2 = " CREATE TABLE " + TABLE_NAME2 + "( "+ CUSTOMER_LIST_ID +" INTEGER PRIMARY KEY AUTOINCREMENT, "
+                                                + CUSTOMER_NAME +" TEXT NOT NULL," + TOTAL_AMOUNT +" TEXT NOT NULL)";
+    private static final String DROP_TABLE2 = " DROP TABLE IF EXISTS "+TABLE_NAME2;
+
+    //Database Table3 Name and Column Name
+    private static final String TABLE_NAME3 = "Customer_Details";
+    private static final String CUSTOMER_DETAILS_ID = "Customer_List_ID";
+    private static final String SPECIFIC_CUSTOMER_ID = "Specific_Customer_ID";
+    private static final String ITEM = "ITEM";
+    private static final String AMOUNT = "Amount";
+    private static final String DATE = "Date";
+    private static final String CREATE_TABLE3 = " CREATE TABLE " + TABLE_NAME3 + "( "+ CUSTOMER_DETAILS_ID +" INTEGER PRIMARY KEY AUTOINCREMENT, "
+                                                + ITEM +" TEXT NOT NULL,"+ AMOUNT +" TEXT NOT NULL," + DATE +" TEXT NOT NULL,"
+                                                + SPECIFIC_CUSTOMER_ID + " INTEGER,"+ " FOREIGN KEY ("+SPECIFIC_CUSTOMER_ID+") REFERENCES "
+                                                +TABLE_NAME2+"("+CUSTOMER_LIST_ID+"))";
+
+    private static final String DROP_TABLE3 = " DROP TABLE IF EXISTS "+TABLE_NAME3;
+
+
+    private static final  int VERSION_NUMBER =6;
     //NEED Context to pass this Context
     private Context context;
     public MySQL_DataBase_helper(@Nullable Context context) {
@@ -36,6 +62,8 @@ public class MySQL_DataBase_helper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
          try {
              sqLiteDatabase.execSQL(CREATE_TABLE1);
+             sqLiteDatabase.execSQL(CREATE_TABLE2);
+             sqLiteDatabase.execSQL(CREATE_TABLE3);
              Toast.makeText(context,"DataBase is created",Toast.LENGTH_SHORT).show();
          } catch (Exception e){
              Toast.makeText(context,"Exception "+e,Toast.LENGTH_LONG).show();
@@ -47,6 +75,8 @@ public class MySQL_DataBase_helper extends SQLiteOpenHelper {
 
         try {
             sqLiteDatabase.execSQL(DROP_TABLE1);
+            sqLiteDatabase.execSQL(DROP_TABLE2);
+            sqLiteDatabase.execSQL(DROP_TABLE3);
             onCreate(sqLiteDatabase);
             Toast.makeText(context,"DataBase is updated",Toast.LENGTH_SHORT).show();
 
