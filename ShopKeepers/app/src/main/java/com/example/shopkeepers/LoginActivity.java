@@ -70,7 +70,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
                   startActivity(new Intent(LoginActivity.this, Customer_List_Activity.class));
 
-              } else {
+              }
+
+              else {
                   Toast.makeText(getApplicationContext(), "Incorrect User Name or Password", Toast.LENGTH_LONG).show();
                   LoginPage_UserName.setText("");
                   LoginPage_password.setText("");

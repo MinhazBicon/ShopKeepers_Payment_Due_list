@@ -8,6 +8,9 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+
+import org.xml.sax.Parser;
+
 public class MySQL_DataBase_helper extends SQLiteOpenHelper {
     // whole DataBase name
     private static final String DATA_BASE_NAME = "ShopKeepers_Payment_dueList.db";
@@ -32,7 +35,7 @@ public class MySQL_DataBase_helper extends SQLiteOpenHelper {
     private static final String CUSTOMER_NAME = "Customer_Name";
     private static final String TOTAL_AMOUNT = "Total_Amount";
     private static final String CREATE_TABLE2 = " CREATE TABLE " + TABLE_NAME2 + "( "+ CUSTOMER_LIST_ID +" INTEGER PRIMARY KEY AUTOINCREMENT, "
-                                                + CUSTOMER_NAME +" TEXT NOT NULL," + TOTAL_AMOUNT +" TEXT NOT NULL)";
+                                                + CUSTOMER_NAME +" TEXT NOT NULL," + TOTAL_AMOUNT +" TEXT )";
     private static final String DROP_TABLE2 = " DROP TABLE IF EXISTS "+TABLE_NAME2;
 
     //Database Table3 Name and Column Name
@@ -44,13 +47,12 @@ public class MySQL_DataBase_helper extends SQLiteOpenHelper {
     private static final String DATE = "Date";
     private static final String CREATE_TABLE3 = " CREATE TABLE " + TABLE_NAME3 + "( "+ CUSTOMER_DETAILS_ID +" INTEGER PRIMARY KEY AUTOINCREMENT, "
                                                 + ITEM +" TEXT NOT NULL,"+ AMOUNT +" TEXT NOT NULL," + DATE +" TEXT NOT NULL,"
-                                                + SPECIFIC_CUSTOMER_ID + " INTEGER,"+ " FOREIGN KEY ("+SPECIFIC_CUSTOMER_ID+") REFERENCES "
-                                                +TABLE_NAME2+"("+CUSTOMER_LIST_ID+"))";
+                                                +SPECIFIC_CUSTOMER_ID+" INTEGER REFERENCES "+CUSTOMER_LIST_ID+")";
 
     private static final String DROP_TABLE3 = " DROP TABLE IF EXISTS "+TABLE_NAME3;
 
 
-    private static final  int VERSION_NUMBER =6;
+    private static final  int VERSION_NUMBER =9;
     //NEED Context to pass this Context
     private Context context;
     public MySQL_DataBase_helper(@Nullable Context context) {
@@ -119,5 +121,23 @@ public class MySQL_DataBase_helper extends SQLiteOpenHelper {
             }
         }
         return result;
+    }
+
+    public long Customer_Details_Insertion(Customer_User_Details customer_user_details){
+        //String Total_Amount = customer_user_details.getItem().toString();
+        SQLiteDatabase Customer_details_database = this.getWritableDatabase();
+        ContentValues contentValues1 = new ContentValues();
+        ContentValues contentValues2 = new ContentValues();
+
+        contentValues1.put(CUSTOMER_NAME,customer_user_details.getCustomerName());
+        contentValues1.put(TOTAL_AMOUNT,customer_user_details.getCustomerAmount());
+
+        contentValues2.put(AMOUNT,customer_user_details.getCustomerAmount());
+        contentValues2.put(ITEM,customer_user_details.getItem());
+        contentValues2.put(DATE,customer_user_details.getDate());
+
+            long row1 = Customer_details_database.insert(TABLE_NAME2,null,contentValues1)
+            long row2 = Customer_details_database.insert(TABLE_NAME3,null,contentValues2);
+      return row1;
     }
 }

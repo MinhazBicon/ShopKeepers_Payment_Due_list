@@ -26,7 +26,7 @@
             android:screenOrientation="portrait"/>
         <activity android:name=".Customer_List_Activity"
             android:screenOrientation="portrait"/>
-        <activity android:name=".Customer_Details_Edit_PopUp"
+        <activity android:name=".Customer_Details_Entry_PopUp"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.PopUpTheme2">
         </activity>

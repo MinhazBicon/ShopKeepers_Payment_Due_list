@@ -22,13 +22,13 @@ public class Customer_List_Activity extends AppCompatActivity {
         getSupportActionBar().hide();
 
         // find customerList_RecyclerView and AddCustomer_btn
-        customerList_Recycler = findViewById(R.id.CustomerList_recyclerView);
+        customerList_Recycler = findViewById(R.id.CustomerList_Name_recyclerView);
         AddCustomer = findViewById(R.id.CustomerList_addCustomer_btn);
 
         AddCustomer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Customer_List_Activity.this,Customer_Details_Edit_PopUp.class));
+                startActivity(new Intent(Customer_List_Activity.this, Customer_Details_Entry_PopUp.class));
             }
         });
 

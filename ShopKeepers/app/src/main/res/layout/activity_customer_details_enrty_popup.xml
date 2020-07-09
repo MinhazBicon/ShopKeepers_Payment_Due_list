@@ -7,7 +7,7 @@
     android:orientation="vertical"
 
 
-    tools:context=".Customer_Details_Edit_PopUp">
+    tools:context=".Customer_Details_Entry_PopUp">
 
     <LinearLayout
         android:layout_weight="2"
@@ -17,6 +17,7 @@
 
 
         <EditText
+            android:id="@+id/CustomerName_Edit"
             android:layout_weight="1"
             android:layout_width="match_parent"
             android:padding="10dp"
@@ -32,6 +33,7 @@
             />
 
         <EditText
+            android:id="@+id/Customer_Amount"
             android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -47,6 +49,7 @@
             />
 
         <EditText
+            android:id="@+id/Customer_Item"
             android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -62,6 +65,7 @@
             />
 
         <EditText
+            android:id="@+id/CustomerDue_itemDate"
             android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -85,6 +89,7 @@
         android:layout_height="match_parent">
 
         <Button
+            android:id="@+id/Customer_details_Submit_btn"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
             android:layout_marginLeft="5dp"
