@@ -64,9 +64,9 @@ public class Customer_Details_Entry_PopUp extends Activity {
                 }
                 else {
 
-                  long row = mySQL_dataBase_helper.Customer_Details_Insertion(customer_user_details);
+                  boolean row = mySQL_dataBase_helper.Customer_Details_Insertion(customer_user_details);
 
-                  if (row >0){
+                  if (row == true){
                        Toast.makeText(getApplicationContext(),"Customer details Insert successful",Toast.LENGTH_SHORT).show();
                        finish();
                   }

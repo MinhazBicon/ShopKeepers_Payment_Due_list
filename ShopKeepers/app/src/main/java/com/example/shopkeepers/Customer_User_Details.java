@@ -1,10 +1,15 @@
 package com.example.shopkeepers;
 
-public class Customer_User_Details {
+import android.database.Cursor;
+import android.icu.text.Transliterator;
 
+import java.util.ArrayList;
+
+public class Customer_User_Details {
     private String CustomerName;
     private String CustomerAmount;
     private String Item;
+    private String Date;
 
     public String getCustomerName() {
         return CustomerName;
@@ -38,5 +43,5 @@ public class Customer_User_Details {
         Date = date;
     }
 
-    private String Date;
+
 }

@@ -67,8 +67,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
           else {
               boolean result = mySQL_dataBase_helper.ShopKeeper_Identity_Check(ShopKeeper_UserName, ShopKeeper_Password);
               if (result == true) {
-
                   startActivity(new Intent(LoginActivity.this, Customer_List_Activity.class));
+                  finish();
 
               }
 
