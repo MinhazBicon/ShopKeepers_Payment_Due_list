@@ -125,27 +125,40 @@ public class MySQL_DataBase_helper extends SQLiteOpenHelper {
         return result;
     }
 
-    public boolean Customer_Details_Insertion(Customer_User_Details customer_user_details){
-        //String Total_Amount = customer_user_details.getItem().toString();
+    public void Customer_Details_Name_Insertion(String name, String  total_Amount){
         SQLiteDatabase Customer_details_database = this.getWritableDatabase();
-        ContentValues contentValues1 = new ContentValues();
-        ContentValues contentValues2 = new ContentValues();
-        boolean row;
-        contentValues1.put(CUSTOMER_NAME,customer_user_details.getCustomerName());
-        contentValues1.put(TOTAL_AMOUNT,customer_user_details.getCustomerAmount());
+        String sql = "INSERT INTO Customer_List VALUES (NULL, ?, ?)";
+        SQLiteStatement statement = Customer_details_database.compileStatement(sql);
+        statement.clearBindings();
+        statement.bindString(1,name);
+        statement.bindString(2,total_Amount);
+        statement.executeInsert();
+        Customer_details_database.close();
 
-        contentValues2.put(AMOUNT,customer_user_details.getCustomerAmount());
-        contentValues2.put(ITEM,customer_user_details.getItem());
-        contentValues2.put(DATE,customer_user_details.getDate());
-        //contentValues2.put(SPECIFIC_CUSTOMER_ID);
+    }
 
-            long row1 = Customer_details_database.insert(TABLE_NAME2,null,contentValues1);
-            long row2 = Customer_details_database.insert(TABLE_NAME3,null,contentValues2);
-            if (row1>0 && row2>0){
-                row =true;
-            }else row = false;
+    public void SpecificCustomer_Details_Insertion(String item, String amount, String date){
+        SQLiteDatabase Customer_details_database = this.getWritableDatabase();
+        String sql = "INSERT INTO Customer_Details VALUES (NULL, ?, ?, ?, ?)";
+        SQLiteStatement statement = Customer_details_database.compileStatement(sql);
+        statement.clearBindings();
+        Cursor cursor = Customer_details_database.rawQuery("SELECT CustomerList_ID FROM Customer_List",null);
+        while (cursor.moveToNext()){
+            int customerID = cursor.getInt(0);
+            statement.bindDouble(4,(double)customerID);
+        }
+        statement.bindString(1,item);
+        statement.bindString(2,amount);
+        statement.bindString(3,date);
+        statement.executeInsert();
+        Customer_details_database.close();
 
-      return row;
+    }
+    public Cursor GetCustomerName_TotalAmount(){
+        SQLiteDatabase database = this.getReadableDatabase();
+        String sql = "SELECT * FROM Customer_List";
+        Cursor cursor = database.rawQuery(sql,null);
+        return cursor;
     }
 
 

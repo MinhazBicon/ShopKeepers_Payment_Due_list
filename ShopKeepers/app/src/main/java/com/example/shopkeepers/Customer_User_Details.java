@@ -6,17 +6,34 @@ import android.icu.text.Transliterator;
 import java.util.ArrayList;
 
 public class Customer_User_Details {
-    private String CustomerName;
+    private String Name;
+    private String TotalAmount;
     private String CustomerAmount;
     private String Item;
     private String Date;
 
-    public String getCustomerName() {
-        return CustomerName;
+    public Customer_User_Details(String name, String totalAmount, String customerAmount, String item, String date) {
+        Name = name;
+        TotalAmount = totalAmount;
+        CustomerAmount = customerAmount;
+        Item = item;
+        Date = date;
     }
 
-    public void setCustomerName(String customerName) {
-        CustomerName = customerName;
+    public String getName() {
+        return Name;
+    }
+
+    public void setName(String name) {
+        Name = name;
+    }
+
+    public String getTotalAmount() {
+        return TotalAmount;
+    }
+
+    public void setTotalAmount(String totalAmount) {
+        TotalAmount = totalAmount;
     }
 
     public String getCustomerAmount() {

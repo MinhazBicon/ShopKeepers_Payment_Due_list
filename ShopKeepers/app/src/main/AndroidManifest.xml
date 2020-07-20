@@ -22,14 +22,19 @@
             android:name=".SignUp_PopUp_Window"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.PopUpTheme1" />
-        <activity android:name=".CustomerDetails_Show"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".Customer_List_Activity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".Customer_Details_Entry_PopUp"
+        <activity
+            android:name=".CustomerDetails_Show"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Customer_List_Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Customer_Details_Entry_PopUp"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.PopUpTheme2">
-        </activity>
+            android:theme="@style/AppTheme.PopUpTheme2"></activity>
+        <activity android:name=".CustomerName_entry_Popup"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.PopUpTheme2"></activity>
     </application>
 
 </manifest>

@@ -11,21 +11,20 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 public class Customer_Details_Entry_PopUp extends Activity {
-    private EditText CustomerName, CustomerAmount, Item, Date;
+    private EditText CustomerAmount, Item, Date;
     private Button CustomerDetails_Submit;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_details_enrty_popup);
 
-        CustomerName = findViewById(R.id.CustomerName_Edit);
         CustomerAmount = findViewById(R.id.Customer_Amount);
         Item = findViewById(R.id.Customer_Item);
         Date = findViewById(R.id.CustomerDue_itemDate);
         CustomerDetails_Submit = findViewById(R.id.Customer_details_Submit_btn);
 
         //creating object of Customer_User_Details class and MySQL_DataBase_helper
-         final Customer_User_Details customer_user_details = new Customer_User_Details();
+
          final MySQL_DataBase_helper mySQL_dataBase_helper = new MySQL_DataBase_helper(this);
 
         // PopUp Window Work
@@ -48,34 +47,22 @@ public class Customer_Details_Entry_PopUp extends Activity {
         CustomerDetails_Submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String Customer_name = CustomerName.getText().toString();
                 String Customer_Amount = CustomerAmount.getText().toString();
                 String Customer_Item = Item.getText().toString();
                 String Customer_Date = Date.getText().toString();
 
-                customer_user_details.setCustomerName(Customer_name);
-                customer_user_details.setCustomerAmount(Customer_Amount);
-                customer_user_details.setItem(Customer_Item);
-                customer_user_details.setDate(Customer_Date);
-
-                if (Customer_name.isEmpty() && Customer_Amount.isEmpty() && Customer_Item.isEmpty()&&Customer_Date.isEmpty()){
-
+                if (Customer_Amount.isEmpty() && Customer_Item.isEmpty()&&Customer_Date.isEmpty()){
                     Toast.makeText(getApplicationContext(),"Enter all the Information",Toast.LENGTH_SHORT).show();
                 }
                 else {
-
-                  boolean row = mySQL_dataBase_helper.Customer_Details_Insertion(customer_user_details);
-
-                  if (row == true){
-                       Toast.makeText(getApplicationContext(),"Customer details Insert successful",Toast.LENGTH_SHORT).show();
-                       finish();
+                  try {
+                      mySQL_dataBase_helper.SpecificCustomer_Details_Insertion(Customer_Item,Customer_Amount,Customer_Date);
+                      Toast.makeText(getApplicationContext(),"Customer due details Insert successful",Toast.LENGTH_SHORT).show();
+                      finish();
                   }
-                  else {
-                      Toast.makeText(getApplicationContext(), "Customer details Insert failed", Toast.LENGTH_SHORT).show();
-                      CustomerName.setText("");
-                      CustomerAmount.setText("");
-                      Item.setText("");
-                      Date.setText("");
+                  catch (Exception e){
+                      e.getStackTrace();
+                      Toast.makeText(getApplicationContext(),"Customer due details Insert failed",Toast.LENGTH_SHORT).show();
                   }
                 }
             }
@@ -83,3 +70,4 @@ public class Customer_Details_Entry_PopUp extends Activity {
     }
 
 }
+

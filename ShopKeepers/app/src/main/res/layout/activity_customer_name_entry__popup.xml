@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="#B6F1FA"
+    tools:context=".CustomerName_entry_Popup">
+
+    <EditText
+        android:id="@+id/Customer_Name"
+        android:padding="10dp"
+        android:layout_margin="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:textSize="20sp"
+        android:textColor="#ffe"
+        android:textStyle="normal"
+        android:textColorHint="#ffe"
+        android:hint="Enter Name"
+        android:background="@drawable/background1_shape"
+    />
+
+    <Button
+        android:id="@+id/Name_submit_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:background="@drawable/background5_shape"
+        android:textSize="20sp"
+        android:textAllCaps="false"
+        android:textColor="#ffe"
+        android:textAlignment="center"
+        android:textStyle="normal"
+        android:text="Done"
+        />
+
+</LinearLayout>

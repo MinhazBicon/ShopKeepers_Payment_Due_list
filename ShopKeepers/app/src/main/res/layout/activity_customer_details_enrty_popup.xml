@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:weightSum="9"
+    android:weightSum="8"
+    android:padding="10dp"
     android:orientation="vertical"
 
 
@@ -14,23 +15,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-
-
-        <EditText
-            android:id="@+id/CustomerName_Edit"
-            android:layout_weight="1"
-            android:layout_width="match_parent"
-            android:padding="10dp"
-            android:layout_height="wrap_content"
-            android:background="@drawable/cardview_background2"
-            android:textColor="#ffe"
-            android:textStyle="normal"
-            android:textAlignment="textStart"
-            android:textSize="25sp"
-            android:hint="Name"
-            android:textColorHint="#ffe"
-            android:inputType="textPersonName"
-            />
 
         <EditText
             android:id="@+id/Customer_Amount"
@@ -83,7 +67,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_weight="7"
+        android:layout_weight="6"
         android:layout_width="match_parent"
         android:gravity="center_horizontal"
         android:layout_height="match_parent">

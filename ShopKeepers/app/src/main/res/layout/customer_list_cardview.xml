@@ -17,6 +17,7 @@
             android:weightSum="4">
 
             <TextView
+                android:id="@+id/customerLisName_textView"
                 android:layout_weight="1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -31,6 +32,7 @@
                 />
 
             <TextView
+                android:id="@+id/customerList_totalAMount_TextView"
                 android:layout_weight="3"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
