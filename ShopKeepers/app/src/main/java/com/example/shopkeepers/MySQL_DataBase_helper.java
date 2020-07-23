@@ -161,5 +161,12 @@ public class MySQL_DataBase_helper extends SQLiteOpenHelper {
         return cursor;
     }
 
+    public Cursor GetSpecific_Customer_Details(){
+        SQLiteDatabase database = this.getReadableDatabase();
+        String sql = "SELECT * FROM Customer_Details";
+        Cursor cursor = database.rawQuery(sql,null);
+        return cursor;
+    }
+
 
 }

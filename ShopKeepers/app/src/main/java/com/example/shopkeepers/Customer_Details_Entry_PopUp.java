@@ -1,6 +1,7 @@
 package com.example.shopkeepers;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.Gravity;
@@ -8,13 +9,16 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.jar.Attributes;
 
 public class Customer_Details_Entry_PopUp extends Activity {
     private EditText CustomerAmount, Item, Date;
     private Button CustomerDetails_Submit;
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_details_enrty_popup);
 
@@ -43,6 +47,10 @@ public class Customer_Details_Entry_PopUp extends Activity {
         params.y = -60;
         getWindow().setAttributes(params);
 
+
+
+
+
         //Onclick Listener event add
         CustomerDetails_Submit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,6 +66,8 @@ public class Customer_Details_Entry_PopUp extends Activity {
                   try {
                       mySQL_dataBase_helper.SpecificCustomer_Details_Insertion(Customer_Item,Customer_Amount,Customer_Date);
                       Toast.makeText(getApplicationContext(),"Customer due details Insert successful",Toast.LENGTH_SHORT).show();
+                      Intent intent = new Intent(Customer_Details_Entry_PopUp.this,CustomerDetails_Show.class);
+                      startActivity(intent);
                       finish();
                   }
                   catch (Exception e){

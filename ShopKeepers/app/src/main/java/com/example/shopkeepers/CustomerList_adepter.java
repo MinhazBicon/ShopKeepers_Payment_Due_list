@@ -14,6 +14,15 @@ import java.util.ArrayList;
 public class CustomerList_adepter extends RecyclerView.Adapter<CustomerList_adepter.customerList_View_holder> {
     private Context context;
     private ArrayList<Customer_User_Details> CustomerName_arr;
+    private OnClickListener customerList_onClickListener;
+
+    public interface OnClickListener{
+        void OnItemClickListener(int position);
+    }
+
+    public void SetOnItemClickListener(OnClickListener onClickListener){
+        customerList_onClickListener = onClickListener;
+    }
 
 
 
@@ -35,6 +44,7 @@ public class CustomerList_adepter extends RecyclerView.Adapter<CustomerList_adep
         Customer_User_Details customer_user_details = CustomerName_arr.get(position);
         holder.name.setText(customer_user_details.getName());
         holder.total_amount.setText(customer_user_details.getTotalAmount());
+        //notifyItemChanged(position);
     }
 
     @Override
@@ -48,6 +58,18 @@ public class CustomerList_adepter extends RecyclerView.Adapter<CustomerList_adep
             super(itemView);
             name = itemView.findViewById(R.id.customerLisName_textView);
             total_amount = itemView.findViewById(R.id.customerList_totalAMount_TextView);
+
+         itemView.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View view) {
+                 if (customerList_onClickListener != null){
+                     int position = getAdapterPosition();
+                     if (position != RecyclerView.NO_POSITION){
+                         customerList_onClickListener.OnItemClickListener(position);
+                     }
+                 }
+             }
+         });
         }
     }
 }

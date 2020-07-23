@@ -10,7 +10,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.EditText;
+
 
 import java.util.ArrayList;
 
@@ -18,6 +18,8 @@ public class Customer_List_Activity extends AppCompatActivity {
     private RecyclerView customerList_Recycler;
     private Button AddCustomer;
     private ArrayList<Customer_User_Details> customerList;
+    CustomerList_adepter customerList_adepter;
+    MySQL_DataBase_helper mySQL_dataBase_helper;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,39 +32,65 @@ public class Customer_List_Activity extends AppCompatActivity {
         // find customerList_RecyclerView and AddCustomer_btn
         customerList_Recycler = findViewById(R.id.CustomerList_Name_recyclerView);
         AddCustomer = findViewById(R.id.CustomerList_addCustomer_btn);
+
+        //setting up the RecyclerView
         customerList_Recycler.setHasFixedSize(true);
         customerList_Recycler.setLayoutManager(new LinearLayoutManager(this));
+
         customerList = new ArrayList<>();
 
-
-        MySQL_DataBase_helper mySQL_dataBase_helper = new MySQL_DataBase_helper(this);
-        Cursor cursor = mySQL_dataBase_helper.GetCustomerName_TotalAmount();
+       // get name from CustomerList database
+        mySQL_dataBase_helper = new MySQL_DataBase_helper(this);
+        final Cursor cursor = mySQL_dataBase_helper.GetCustomerName_TotalAmount();
         while (cursor.moveToNext()){
             String name = cursor.getString(1);
             String totalAmount = cursor.getString(2);
             customerList.add(new Customer_User_Details(name,totalAmount,null,null,null));
         }
 
-        CustomerList_adepter customerList_adepter = new CustomerList_adepter(this,customerList);
+        //pas value of customer array list and set adapter to RecyclerView
+        customerList_adepter = new CustomerList_adepter(this,customerList);
         customerList_Recycler.setAdapter(customerList_adepter);
-        customerList_adepter.notifyDataSetChanged();
-
-
 
 
         AddCustomer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 startActivity(new Intent(Customer_List_Activity.this, CustomerName_entry_Popup.class));
             }
         });
 
-
+        customerList_adepter.SetOnItemClickListener(new CustomerList_adepter.OnClickListener() {
+            @Override
+            public void OnItemClickListener(int position) {
+                customerList.get(position);
+                Cursor cursor1 = mySQL_dataBase_helper.GetCustomerName_TotalAmount();
+                ArrayList<String> nameArr = new ArrayList<>();
+                ArrayList<String> AmountArr = new ArrayList<>();
+                ArrayList<String> CustomerIDArr = new ArrayList<>();
+                while (cursor1.moveToNext()){
+                    String ID = cursor.getString(0);
+                    String name = cursor1.getString(1);
+                    String Total = cursor1.getString(2);
+                    nameArr.add(name);
+                    AmountArr.add(Total);
+                    CustomerIDArr.add(ID);
+                }
+                Intent intent  = new Intent(Customer_List_Activity.this,CustomerDetails_Show.class);
+                intent.putExtra("Name",nameArr.get(position));
+                intent.putExtra("Amount",AmountArr.get(position));
+                intent.putExtra("CustomerID",CustomerIDArr.get(position));
+                startActivity(intent);
+            }
+        });
 
 
     }
 
-
-
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        startActivity(new Intent(Customer_List_Activity.this,LoginActivity.class));
+        finish();
+    }
 }

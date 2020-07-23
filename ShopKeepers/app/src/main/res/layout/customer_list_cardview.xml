@@ -3,8 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:padding="7dp"
-    android:background="@drawable/background1">
+    android:padding="5dp"
+    >
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
@@ -14,6 +14,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal"
+
             android:weightSum="4">
 
             <TextView
@@ -27,8 +28,8 @@
                 android:textAlignment="textStart"
                 android:text="Name"
                 android:textSize="25sp"
-                android:textStyle="bold"
-                android:textIsSelectable="true"
+                android:textStyle="bold|italic"
+                android:textIsSelectable="false"
                 />
 
             <TextView

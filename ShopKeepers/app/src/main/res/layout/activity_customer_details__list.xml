@@ -11,14 +11,15 @@
     tools:context=".CustomerDetails_Show">
 
     <LinearLayout
-        android:layout_weight="1.8"
+        android:layout_weight="2"
         android:gravity="center"
-        android:padding="15dp"
+        android:padding="10dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <TextView
-            android:padding="10dp"
+            android:id="@+id/specific_name"
+            android:padding="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/cardview_background1"
@@ -34,7 +35,7 @@
 
 
     <LinearLayout
-        android:layout_weight="1"
+        android:layout_weight=".9"
         android:layout_width="match_parent"
         android:orientation="horizontal"
         android:gravity="center"
@@ -44,6 +45,7 @@
         android:layout_height="match_parent">
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/RecyclerView_id"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             />
@@ -51,7 +53,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_weight="1.9"
+        android:layout_weight="2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
@@ -67,11 +69,12 @@
             android:background="@drawable/cardview_background1"
             android:textStyle="bold"
             android:textAlignment="textStart"
-            android:textSize="25sp"
+            android:textSize="20sp"
             android:textColor="#ffe"
-            android:text="Total"
+            android:text="Total BDT"
             />
         <TextView
+            android:id="@+id/specific_amount"
             android:layout_weight="2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -79,7 +82,7 @@
             android:background="@drawable/cardview_background2"
             android:textStyle="bold"
             android:textAlignment="center"
-            android:textSize="25sp"
+            android:textSize="20sp"
             android:textColor="#ffe"
             android:text="Amount"
             />
@@ -88,18 +91,20 @@
 
 
     <LinearLayout
-        android:layout_weight="1.8"
+        android:layout_weight="1.9"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal"
         android:weightSum="2"
         android:layout_margin="30dp"
-        android:padding="10dp"
+        android:padding="8dp"
         android:gravity="center">
 
         <Button
+            android:id="@+id/details_add_btn1"
             android:layout_weight="1"
             android:gravity="center"
+
             android:layout_marginRight="15dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -111,6 +116,7 @@
             android:background="@drawable/cardview_background2"
             />
         <Button
+            android:id="@+id/details_add_btn2"
             android:layout_weight="1"
             android:gravity="center"
             android:layout_marginLeft="15dp"

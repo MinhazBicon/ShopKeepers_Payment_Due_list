@@ -33,13 +33,13 @@ public class CustomerName_entry_Popup extends Activity {
         int width = displayMetrics.widthPixels;
         int height = displayMetrics.heightPixels;
         // getWindow().setBackgroundDrawableResource(flag);
-        getWindow().setLayout((int) (width*.7),(int) (height*.26));
+        getWindow().setLayout((int) (width*.7),(int) (height*.29));
 
         //setting the Popup window position
         WindowManager.LayoutParams params = getWindow().getAttributes();
         params.gravity = Gravity.CENTER;
         params.x = 0;
-        params.y = -70;
+        params.y = -80;
         getWindow().setAttributes(params);
         mySQL_dataBase_helper= new MySQL_DataBase_helper(this);
 
@@ -52,7 +52,7 @@ public class CustomerName_entry_Popup extends Activity {
              }else {
                  try {
                      mySQL_dataBase_helper.Customer_Details_Name_Insertion(Name,"0");
-                     Toast.makeText(getApplicationContext(),"Customer added successful",Toast.LENGTH_SHORT).show();
+                     Toast.makeText(getApplicationContext(),"Customer  added successful",Toast.LENGTH_SHORT).show();
                      startActivity(new Intent(CustomerName_entry_Popup.this,Customer_List_Activity.class));
                      finish();
                  }catch (Exception e){
