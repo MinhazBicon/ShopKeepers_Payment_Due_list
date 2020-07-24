@@ -1,7 +1,9 @@
 package com.example.shopkeepers;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.Gravity;
@@ -12,11 +14,16 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
+
+import java.util.Map;
+import java.util.Set;
 import java.util.jar.Attributes;
 
 public class Customer_Details_Entry_PopUp extends Activity {
     private EditText CustomerAmount, Item, Date;
     private Button CustomerDetails_Submit;
+
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,7 +36,7 @@ public class Customer_Details_Entry_PopUp extends Activity {
 
         //creating object of Customer_User_Details class and MySQL_DataBase_helper
 
-         final MySQL_DataBase_helper mySQL_dataBase_helper = new MySQL_DataBase_helper(this);
+        final MySQL_DataBase_helper mySQL_dataBase_helper = new MySQL_DataBase_helper(this);
 
         // PopUp Window Work
         DisplayMetrics displayMetrics = new DisplayMetrics();
@@ -38,7 +45,7 @@ public class Customer_Details_Entry_PopUp extends Activity {
         int width = displayMetrics.widthPixels;
         int height = displayMetrics.heightPixels;
         // getWindow().setBackgroundDrawableResource(flag);
-        getWindow().setLayout((int) (width*.8),(int) (height*.5));
+        getWindow().setLayout((int) (width * .8), (int) (height * .5));
 
         //setting the Popup window position
         WindowManager.LayoutParams params = getWindow().getAttributes();
@@ -47,8 +54,11 @@ public class Customer_Details_Entry_PopUp extends Activity {
         params.y = -60;
         getWindow().setAttributes(params);
 
-
-
+        Bundle bundle = getIntent().getExtras();
+        if (bundle != null) {
+            String CustomerID = bundle.getString("ID");
+            Store_CustomerID(CustomerID);
+        }
 
 
         //Onclick Listener event add
@@ -59,25 +69,35 @@ public class Customer_Details_Entry_PopUp extends Activity {
                 String Customer_Item = Item.getText().toString();
                 String Customer_Date = Date.getText().toString();
 
-                if (Customer_Amount.isEmpty() && Customer_Item.isEmpty()&&Customer_Date.isEmpty()){
-                    Toast.makeText(getApplicationContext(),"Enter all the Information",Toast.LENGTH_SHORT).show();
-                }
-                else {
-                  try {
-                      mySQL_dataBase_helper.SpecificCustomer_Details_Insertion(Customer_Item,Customer_Amount,Customer_Date);
-                      Toast.makeText(getApplicationContext(),"Customer due details Insert successful",Toast.LENGTH_SHORT).show();
-                      Intent intent = new Intent(Customer_Details_Entry_PopUp.this,CustomerDetails_Show.class);
-                      startActivity(intent);
-                      finish();
-                  }
-                  catch (Exception e){
-                      e.getStackTrace();
-                      Toast.makeText(getApplicationContext(),"Customer due details Insert failed",Toast.LENGTH_SHORT).show();
-                  }
+                if (Customer_Amount.isEmpty() && Customer_Item.isEmpty() && Customer_Date.isEmpty()) {
+                    Toast.makeText(getApplicationContext(), "Enter all the Information", Toast.LENGTH_SHORT).show();
+                } else {
+                    try {
+                        mySQL_dataBase_helper.SpecificCustomer_Details_Insertion(Customer_Item, Customer_Amount, Customer_Date,Load_CustomerId());
+                        Toast.makeText(getApplicationContext(), "Customer due details Insert successful", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(Customer_Details_Entry_PopUp.this, CustomerDetails_Show.class);
+                        startActivity(intent);
+                        finish();
+                    } catch (Exception e) {
+                        e.getStackTrace();
+                        Toast.makeText(getApplicationContext(), "Customer due details Insert failed", Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         });
     }
 
-}
+    public void Store_CustomerID(String Id) {
+        SharedPreferences ID = getSharedPreferences("Id", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = ID.edit();
+        editor.putString("LastID",Id);
+        editor.commit();
+    }
 
+    public String Load_CustomerId(){
+        SharedPreferences ID = getSharedPreferences("Id",Context.MODE_PRIVATE);
+        String CustomerId = ID.getString("LastID","Id Not found");
+        return CustomerId;
+    }
+
+}

@@ -137,19 +137,17 @@ public class MySQL_DataBase_helper extends SQLiteOpenHelper {
 
     }
 
-    public void SpecificCustomer_Details_Insertion(String item, String amount, String date){
+    public void SpecificCustomer_Details_Insertion(String item, String amount, String date, String CustomerID){
         SQLiteDatabase Customer_details_database = this.getWritableDatabase();
         String sql = "INSERT INTO Customer_Details VALUES (NULL, ?, ?, ?, ?)";
         SQLiteStatement statement = Customer_details_database.compileStatement(sql);
+
         statement.clearBindings();
-        Cursor cursor = Customer_details_database.rawQuery("SELECT CustomerList_ID FROM Customer_List",null);
-        while (cursor.moveToNext()){
-            int customerID = cursor.getInt(0);
-            statement.bindDouble(4,(double)customerID);
-        }
         statement.bindString(1,item);
         statement.bindString(2,amount);
         statement.bindString(3,date);
+        statement.bindString(4,CustomerID);
+
         statement.executeInsert();
         Customer_details_database.close();
 
@@ -161,9 +159,16 @@ public class MySQL_DataBase_helper extends SQLiteOpenHelper {
         return cursor;
     }
 
-    public Cursor GetSpecific_Customer_Details(){
+    public Cursor GetSpecific_Customer_Details(String ID){
         SQLiteDatabase database = this.getReadableDatabase();
-        String sql = "SELECT * FROM Customer_Details";
+        String sql = "SELECT * FROM Customer_Details WHERE Specific_Customer_ID = "+ ID +"";
+        Cursor cursor = database.rawQuery(sql,null);
+        return cursor;
+    }
+
+    public  Cursor GetTotal_Amount_Specific_CustomerDetails(String ID){
+        SQLiteDatabase database = this.getReadableDatabase();
+        String sql = "SELECT Specific_Customer_ID, SUM(Amount) FROM Customer_Details  WHERE Specific_Customer_ID="+ID+" GROUP BY Specific_Customer_ID ";
         Cursor cursor = database.rawQuery(sql,null);
         return cursor;
     }

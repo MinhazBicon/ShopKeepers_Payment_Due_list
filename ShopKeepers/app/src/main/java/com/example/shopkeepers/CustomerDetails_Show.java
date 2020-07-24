@@ -56,28 +56,35 @@ public class CustomerDetails_Show extends AppCompatActivity implements View.OnCl
         if (bundle!=null){
         String Profile_Name = bundle.getString("Name");
         String Total_Amount = bundle.getString("Amount");
+        int CustomerId = bundle.getInt("Customer_ID");
+        String ID = String.valueOf(CustomerId);
         //store current customerName
-            Store_Profile_data(Profile_Name,Total_Amount);
+            Store_Profile_data(Profile_Name,Total_Amount,ID);
         }
-
-
 
         //set profile data
          SpecificName.setText(Load_And_Set_Name());
          Total_amount.setText(Load_And_Set_amount());
 
-
-
         specificDetails = new ArrayList<>();
+        String ID = Load_And_Set_CustomerID();
         // get data from  SpecificCustomerDetails table
         mySQL_dataBase_helper = new MySQL_DataBase_helper(this);
-        Cursor cursor = mySQL_dataBase_helper.GetSpecific_Customer_Details();
+        Cursor cursor = mySQL_dataBase_helper.GetSpecific_Customer_Details(ID);
         while (cursor.moveToNext()){
             String itemName = cursor.getString(1);
             String itemAmount = cursor.getString(2);
             String itemDate = cursor.getString(3);
             specificDetails.add(new Customer_User_Details(null,null,itemAmount,itemName,itemDate));
         }
+
+       Cursor cursor1 =mySQL_dataBase_helper.GetTotal_Amount_Specific_CustomerDetails(ID);
+        while (cursor1.moveToNext()){
+            String Total = cursor1.getString(1);
+            Total_amount.setText(Total);
+        }
+
+
         customerDetails_adepter = new CustomerDetails_Adepter(this,specificDetails);
         //setting up the RecyclerView
         recyclerView.setAdapter(customerDetails_adepter);
@@ -87,19 +94,25 @@ public class CustomerDetails_Show extends AppCompatActivity implements View.OnCl
 
     @Override
     public void onClick(View view) {
-        startActivity(new Intent(CustomerDetails_Show.this,Customer_Details_Entry_PopUp.class));
+        String Customer_id = Load_And_Set_CustomerID();
+        Intent intent = new Intent(CustomerDetails_Show.this,Customer_Details_Entry_PopUp.class);
+        intent.putExtra("ID",Customer_id);
+        startActivity(intent);
     }
 
-    public void Store_Profile_data(String Name, String TotalAmount){
+    public void Store_Profile_data(String Name, String TotalAmount, String CustomerId){
         SharedPreferences storeName = getSharedPreferences("Name", Context.MODE_PRIVATE);
         SharedPreferences storeAmount = getSharedPreferences("Amount", Context.MODE_PRIVATE);
+        SharedPreferences storeCustomerId = getSharedPreferences("Id", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor1 = storeName.edit();
         SharedPreferences.Editor editor2 = storeAmount.edit();
+        SharedPreferences.Editor editor3 = storeCustomerId.edit();
         editor1.putString("last_profile",Name);
         editor2.putString("Total",TotalAmount);
+        editor3.putString("last_Customer_id",CustomerId);
         editor1.commit();
         editor2.commit();
-
+        editor3.commit();
    }
 
     @Override
@@ -114,9 +127,14 @@ public class CustomerDetails_Show extends AppCompatActivity implements View.OnCl
         return Profile;
    }
     private String Load_And_Set_amount(){
-        SharedPreferences Amount = getSharedPreferences("Amount",Context.MODE_PRIVATE);
-        String Total = Amount.getString("Total"," amount0");
+        SharedPreferences LoadAmount = getSharedPreferences("Amount",Context.MODE_PRIVATE);
+        String Total = LoadAmount.getString("Total","amount");
         return Total;
+    }
+    private String Load_And_Set_CustomerID(){
+        SharedPreferences LoadCustomerId = getSharedPreferences("Id",Context.MODE_PRIVATE);
+        String ID = LoadCustomerId.getString("last_Customer_id","ID not found");
+        return ID;
     }
 
 }

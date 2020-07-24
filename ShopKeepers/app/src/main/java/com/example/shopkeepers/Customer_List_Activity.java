@@ -67,9 +67,9 @@ public class Customer_List_Activity extends AppCompatActivity {
                 Cursor cursor1 = mySQL_dataBase_helper.GetCustomerName_TotalAmount();
                 ArrayList<String> nameArr = new ArrayList<>();
                 ArrayList<String> AmountArr = new ArrayList<>();
-                ArrayList<String> CustomerIDArr = new ArrayList<>();
+                ArrayList<Integer> CustomerIDArr = new ArrayList<>();
                 while (cursor1.moveToNext()){
-                    String ID = cursor.getString(0);
+                    int ID = cursor1.getInt(0);
                     String name = cursor1.getString(1);
                     String Total = cursor1.getString(2);
                     nameArr.add(name);
@@ -79,7 +79,7 @@ public class Customer_List_Activity extends AppCompatActivity {
                 Intent intent  = new Intent(Customer_List_Activity.this,CustomerDetails_Show.class);
                 intent.putExtra("Name",nameArr.get(position));
                 intent.putExtra("Amount",AmountArr.get(position));
-                intent.putExtra("CustomerID",CustomerIDArr.get(position));
+                intent.putExtra("Customer_ID",CustomerIDArr.get(position));
                 startActivity(intent);
             }
         });
