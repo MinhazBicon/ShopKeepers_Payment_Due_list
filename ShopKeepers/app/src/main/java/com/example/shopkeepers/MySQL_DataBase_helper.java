@@ -173,5 +173,14 @@ public class MySQL_DataBase_helper extends SQLiteOpenHelper {
         return cursor;
     }
 
+    public void Update_TotalAmount(int Id, String total_Amount){
+        SQLiteDatabase database = this.getWritableDatabase();
+        String sql = "UPDATE Customer_List SET Total_Amount = ? WHERE CustomerList_ID ="+Id+"";
+        SQLiteStatement sqLiteStatement = database.compileStatement(sql);
+        sqLiteStatement.bindString(1,total_Amount);
+        sqLiteStatement.execute();
+        database.close();
+    }
+
 
 }

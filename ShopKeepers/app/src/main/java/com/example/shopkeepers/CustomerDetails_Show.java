@@ -13,8 +13,11 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.jar.Attributes;
 
 import static androidx.recyclerview.widget.RecyclerView.*;
@@ -62,7 +65,9 @@ public class CustomerDetails_Show extends AppCompatActivity implements View.OnCl
             Store_Profile_data(Profile_Name,Total_Amount,ID);
         }
 
+
         //set profile data
+
          SpecificName.setText(Load_And_Set_Name());
          Total_amount.setText(Load_And_Set_amount());
 
@@ -78,11 +83,23 @@ public class CustomerDetails_Show extends AppCompatActivity implements View.OnCl
             specificDetails.add(new Customer_User_Details(null,null,itemAmount,itemName,itemDate));
         }
 
+        // Calculate TotalAmount from Database Table 3
        Cursor cursor1 =mySQL_dataBase_helper.GetTotal_Amount_Specific_CustomerDetails(ID);
         while (cursor1.moveToNext()){
             String Total = cursor1.getString(1);
             Total_amount.setText(Total);
+            Store_Calculated_total_amount(Total);
         }
+
+        // update Total Amount to database Table 2
+         int id = Integer.parseInt(Load_And_Set_CustomerID());
+         String total = ReturnTotal_Amount();
+         try {
+             mySQL_dataBase_helper.Update_TotalAmount(id,total);
+         }catch (Exception e){
+             e.getStackTrace();
+             Toast.makeText(getApplicationContext(),"Calculate total amount update failed",Toast.LENGTH_LONG).show();
+         }
 
 
         customerDetails_adepter = new CustomerDetails_Adepter(this,specificDetails);
@@ -135,6 +152,17 @@ public class CustomerDetails_Show extends AppCompatActivity implements View.OnCl
         SharedPreferences LoadCustomerId = getSharedPreferences("Id",Context.MODE_PRIVATE);
         String ID = LoadCustomerId.getString("last_Customer_id","ID not found");
         return ID;
+    }
+    public void Store_Calculated_total_amount(String total){
+        SharedPreferences Total = getSharedPreferences("total",Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = Total.edit();
+        editor.putString("LastTotal",total);
+        editor.commit();
+    }
+    public String ReturnTotal_Amount(){
+        SharedPreferences LoadTotal = getSharedPreferences("total",Context.MODE_PRIVATE);
+        String total = LoadTotal.getString("LastTotal","Error");
+        return total;
     }
 
 }

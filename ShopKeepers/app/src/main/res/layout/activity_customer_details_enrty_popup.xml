@@ -4,37 +4,21 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:weightSum="8"
-
     android:orientation="vertical"
-
-
+    android:background="@drawable/shoopkeeper_background1"
     tools:context=".Customer_Details_Entry_PopUp">
 
     <LinearLayout
         android:layout_weight="2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_margin="5dp"
         android:orientation="vertical">
-
-        <EditText
-            android:id="@+id/Customer_Amount"
-            android:layout_weight="1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:background="@drawable/cardview_background2"
-            android:textColor="#ffe"
-            android:textStyle="normal"
-            android:textAlignment="textStart"
-            android:textSize="25sp"
-            android:hint="Amount"
-            android:textColorHint="#ffe"
-            android:inputType="numberSigned"
-            />
 
         <EditText
             android:id="@+id/Customer_Item"
             android:layout_weight="1"
+            android:layout_margin="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="10dp"
@@ -43,14 +27,16 @@
             android:textStyle="normal"
             android:textAlignment="textStart"
             android:textSize="25sp"
-            android:hint="Item Description"
-            android:textColorHint="#ffe"
             android:inputType="text"
+            android:hint="Item description"
+            android:textColorHint="#ffe"
+
             />
 
         <EditText
-            android:id="@+id/CustomerDue_itemDate"
+            android:id="@+id/Customer_Price"
             android:layout_weight="1"
+            android:layout_margin="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="10dp"
@@ -59,10 +45,13 @@
             android:textStyle="normal"
             android:textAlignment="textStart"
             android:textSize="25sp"
-            android:hint="Date"
+            android:inputType="numberSigned"
+            android:hint="Price"
             android:textColorHint="#ffe"
-            android:inputType="date"
+
             />
+
+
 
     </LinearLayout>
 
@@ -74,14 +63,11 @@
 
         <Button
             android:id="@+id/Customer_details_Submit_btn"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
+            android:layout_margin="5dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:textColor="#ffe"
-            android:textSize="25sp"
+            android:textSize="20sp"
             android:textAlignment="center"
             android:textStyle="normal"
             android:textAllCaps="false"

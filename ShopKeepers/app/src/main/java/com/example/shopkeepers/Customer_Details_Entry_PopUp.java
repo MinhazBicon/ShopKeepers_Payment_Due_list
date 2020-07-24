@@ -16,12 +16,14 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
+import java.text.DateFormat;
+import java.util.Calendar;
 import java.util.Map;
 import java.util.Set;
 import java.util.jar.Attributes;
 
 public class Customer_Details_Entry_PopUp extends Activity {
-    private EditText CustomerAmount, Item, Date;
+    private EditText CustomerAmount, Item;
     private Button CustomerDetails_Submit;
 
     @Override
@@ -29,9 +31,9 @@ public class Customer_Details_Entry_PopUp extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_details_enrty_popup);
 
-        CustomerAmount = findViewById(R.id.Customer_Amount);
+        CustomerAmount = findViewById(R.id.Customer_Price);
         Item = findViewById(R.id.Customer_Item);
-        Date = findViewById(R.id.CustomerDue_itemDate);
+
         CustomerDetails_Submit = findViewById(R.id.Customer_details_Submit_btn);
 
         //creating object of Customer_User_Details class and MySQL_DataBase_helper
@@ -45,13 +47,13 @@ public class Customer_Details_Entry_PopUp extends Activity {
         int width = displayMetrics.widthPixels;
         int height = displayMetrics.heightPixels;
         // getWindow().setBackgroundDrawableResource(flag);
-        getWindow().setLayout((int) (width * .8), (int) (height * .5));
+        getWindow().setLayout((int) (width * .7), (int) (height * .35));
 
         //setting the Popup window position
         WindowManager.LayoutParams params = getWindow().getAttributes();
         params.gravity = Gravity.CENTER;
         params.x = 0;
-        params.y = -60;
+        params.y = -70;
         getWindow().setAttributes(params);
 
         Bundle bundle = getIntent().getExtras();
@@ -67,13 +69,15 @@ public class Customer_Details_Entry_PopUp extends Activity {
             public void onClick(View view) {
                 String Customer_Amount = CustomerAmount.getText().toString();
                 String Customer_Item = Item.getText().toString();
-                String Customer_Date = Date.getText().toString();
+               //get current date from device
+                Calendar calendar = Calendar.getInstance();
+                String currentDate = DateFormat.getDateInstance().format(calendar.getTime());
 
-                if (Customer_Amount.isEmpty() && Customer_Item.isEmpty() && Customer_Date.isEmpty()) {
+                if (Customer_Amount.isEmpty() && Customer_Item.isEmpty()) {
                     Toast.makeText(getApplicationContext(), "Enter all the Information", Toast.LENGTH_SHORT).show();
                 } else {
                     try {
-                        mySQL_dataBase_helper.SpecificCustomer_Details_Insertion(Customer_Item, Customer_Amount, Customer_Date,Load_CustomerId());
+                        mySQL_dataBase_helper.SpecificCustomer_Details_Insertion(Customer_Item, Customer_Amount, currentDate, Load_CustomerId());
                         Toast.makeText(getApplicationContext(), "Customer due details Insert successful", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(Customer_Details_Entry_PopUp.this, CustomerDetails_Show.class);
                         startActivity(intent);
