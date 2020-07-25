@@ -39,7 +39,7 @@ public class Customer_List_Activity extends AppCompatActivity {
 
         customerList = new ArrayList<>();
 
-       // get name from CustomerList database
+       // get name and initial total amount from CustomerList database table2
         mySQL_dataBase_helper = new MySQL_DataBase_helper(this);
         final Cursor cursor = mySQL_dataBase_helper.GetCustomerName_TotalAmount();
         while (cursor.moveToNext()){
@@ -48,7 +48,7 @@ public class Customer_List_Activity extends AppCompatActivity {
             customerList.add(new Customer_User_Details(name,totalAmount,null,null,null));
         }
 
-        //pas value of customer array list and set adapter to RecyclerView
+        //pass value of customer array list and set adapter to RecyclerView
         customerList_adepter = new CustomerList_adepter(this,customerList);
         customerList_Recycler.setAdapter(customerList_adepter);
 
@@ -63,6 +63,7 @@ public class Customer_List_Activity extends AppCompatActivity {
         customerList_adepter.SetOnItemClickListener(new CustomerList_adepter.OnClickListener() {
             @Override
             public void OnItemClickListener(int position) {
+             // get name and initial total amount in current position
                 customerList.get(position);
                 Cursor cursor1 = mySQL_dataBase_helper.GetCustomerName_TotalAmount();
                 ArrayList<String> nameArr = new ArrayList<>();

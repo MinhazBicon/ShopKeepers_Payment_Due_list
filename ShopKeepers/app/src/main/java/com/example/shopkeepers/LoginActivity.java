@@ -80,4 +80,15 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
           }
         }
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Destroy();
+    }
+
+    public void Destroy() {
+        int id= android.os.Process.myPid();
+        android.os.Process.killProcess(id);
+    }
 }

@@ -29,7 +29,7 @@ public class CustomerDetails_Show extends AppCompatActivity implements View.OnCl
     private RecyclerView recyclerView;
     MySQL_DataBase_helper mySQL_dataBase_helper;
     CustomerDetails_Adepter customerDetails_adepter;
-    Customer_User_Details customer_user_details;
+    private String currentId;
     private ArrayList<Customer_User_Details> specificDetails;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +54,7 @@ public class CustomerDetails_Show extends AppCompatActivity implements View.OnCl
         add1.setOnClickListener(this);
         add2.setOnClickListener(this);
 
-        // getting current click Customer name
+        // getting current click Customer name and initial  total amount from CustomerList activity
         Bundle bundle = getIntent().getExtras();
         if (bundle!=null){
         String Profile_Name = bundle.getString("Name");
@@ -64,22 +64,21 @@ public class CustomerDetails_Show extends AppCompatActivity implements View.OnCl
         //store current customerName
             Store_Profile_data(Profile_Name,Total_Amount,ID);
         }
-
-
-        //set profile data
-
-         SpecificName.setText(Load_And_Set_Name());
-         Total_amount.setText(Load_And_Set_amount());
+        //set profile  name and initial total name
+        SpecificName.setText(Load_And_Set_Name());
+        Total_amount.setText(Load_And_Set_amount());
 
         specificDetails = new ArrayList<>();
         String ID = Load_And_Set_CustomerID();
-        // get data from  SpecificCustomerDetails table
+
+        // get data from  SpecificCustomerDetails table3
         mySQL_dataBase_helper = new MySQL_DataBase_helper(this);
         Cursor cursor = mySQL_dataBase_helper.GetSpecific_Customer_Details(ID);
         while (cursor.moveToNext()){
             String itemName = cursor.getString(1);
             String itemAmount = cursor.getString(2);
             String itemDate = cursor.getString(3);
+                   currentId = cursor.getString(4);
             specificDetails.add(new Customer_User_Details(null,null,itemAmount,itemName,itemDate));
         }
 
@@ -91,19 +90,19 @@ public class CustomerDetails_Show extends AppCompatActivity implements View.OnCl
             Store_Calculated_total_amount(Total);
         }
 
-        // update Total Amount to database Table 2
+        // Update Total Amount to database Table 2
          int id = Integer.parseInt(Load_And_Set_CustomerID());
          String total = ReturnTotal_Amount();
          try {
-             mySQL_dataBase_helper.Update_TotalAmount(id,total);
+             if (id==Integer.parseInt(currentId)){
+             mySQL_dataBase_helper.Update_TotalAmount(id,total);}
          }catch (Exception e){
              e.getStackTrace();
-             Toast.makeText(getApplicationContext(),"Calculate total amount update failed",Toast.LENGTH_LONG).show();
+             Toast.makeText(getApplicationContext(),"Nothing to calculate add item",Toast.LENGTH_LONG).show();
          }
 
-
+        //setting up the RecyclerView  and set adapter to RecyclerView
         customerDetails_adepter = new CustomerDetails_Adepter(this,specificDetails);
-        //setting up the RecyclerView
         recyclerView.setAdapter(customerDetails_adepter);
         customerDetails_adepter.notifyDataSetChanged();
 
@@ -132,13 +131,7 @@ public class CustomerDetails_Show extends AppCompatActivity implements View.OnCl
         editor3.commit();
    }
 
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        startActivity(new Intent(CustomerDetails_Show.this,Customer_List_Activity.class));
-    }
-
-    public String Load_And_Set_Name(){
+    private String Load_And_Set_Name(){
         SharedPreferences LoadName = getSharedPreferences("Name",Context.MODE_PRIVATE);
         String Profile = LoadName.getString("last_profile","Name not found");
         return Profile;
@@ -153,16 +146,22 @@ public class CustomerDetails_Show extends AppCompatActivity implements View.OnCl
         String ID = LoadCustomerId.getString("last_Customer_id","ID not found");
         return ID;
     }
-    public void Store_Calculated_total_amount(String total){
+    private void Store_Calculated_total_amount(String total){
         SharedPreferences Total = getSharedPreferences("total",Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = Total.edit();
         editor.putString("LastTotal",total);
         editor.commit();
     }
-    public String ReturnTotal_Amount(){
+    private String ReturnTotal_Amount(){
         SharedPreferences LoadTotal = getSharedPreferences("total",Context.MODE_PRIVATE);
-        String total = LoadTotal.getString("LastTotal","Error");
+        String total = LoadTotal.getString("LastTotal","0");
         return total;
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        startActivity(new Intent(CustomerDetails_Show.this,Customer_List_Activity.class));
+        finish();
+    }
 }
