@@ -24,7 +24,7 @@ import static androidx.recyclerview.widget.RecyclerView.*;
 import static java.util.jar.Attributes.*;
 
 public class CustomerDetails_Show extends AppCompatActivity implements View.OnClickListener {
-    private Button add1,add2;
+    private Button add,sub;
     private TextView SpecificName, Total_amount;
     private RecyclerView recyclerView;
     MySQL_DataBase_helper mySQL_dataBase_helper;
@@ -41,8 +41,8 @@ public class CustomerDetails_Show extends AppCompatActivity implements View.OnCl
         getSupportActionBar().hide();
 
         // find all variable
-        add1 = findViewById(R.id.details_add_btn1);
-        add2 = findViewById(R.id.details_add_btn2);
+        add = findViewById(R.id.details_add_btn1);
+        sub = findViewById(R.id.details_add_btn2);
         SpecificName = findViewById(R.id.specific_name);
         Total_amount = findViewById(R.id.specific_amount);
         recyclerView = findViewById(R.id.RecyclerView_id);
@@ -51,8 +51,8 @@ public class CustomerDetails_Show extends AppCompatActivity implements View.OnCl
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         //set OnclickListener
-        add1.setOnClickListener(this);
-        add2.setOnClickListener(this);
+        add.setOnClickListener(this);
+        sub.setOnClickListener(this);
 
         // getting current click Customer name and initial  total amount from CustomerList activity
         Bundle bundle = getIntent().getExtras();
@@ -94,11 +94,11 @@ public class CustomerDetails_Show extends AppCompatActivity implements View.OnCl
          int id = Integer.parseInt(Load_And_Set_CustomerID());
          String total = ReturnTotal_Amount();
          try {
-             if (id==Integer.parseInt(currentId)){
+             if (id == Integer.parseInt(currentId)){
              mySQL_dataBase_helper.Update_TotalAmount(id,total);}
          }catch (Exception e){
              e.getStackTrace();
-             Toast.makeText(getApplicationContext(),"Nothing to calculate add item",Toast.LENGTH_LONG).show();
+             Toast.makeText(getApplicationContext(),"Nothing to calculate\n please add item",Toast.LENGTH_SHORT).show();
          }
 
         //setting up the RecyclerView  and set adapter to RecyclerView
@@ -110,10 +110,18 @@ public class CustomerDetails_Show extends AppCompatActivity implements View.OnCl
 
     @Override
     public void onClick(View view) {
+       if (view == add){
         String Customer_id = Load_And_Set_CustomerID();
         Intent intent = new Intent(CustomerDetails_Show.this,Customer_Details_Entry_PopUp.class);
         intent.putExtra("ID",Customer_id);
         startActivity(intent);
+       }
+       if (view == sub){
+           String Customer_id = Load_And_Set_CustomerID();
+           Intent intent = new Intent(CustomerDetails_Show.this,Customer_Payment.class);
+           intent.putExtra("ID",Customer_id);
+           startActivity(intent);
+       }
     }
 
     public void Store_Profile_data(String Name, String TotalAmount, String CustomerId){
