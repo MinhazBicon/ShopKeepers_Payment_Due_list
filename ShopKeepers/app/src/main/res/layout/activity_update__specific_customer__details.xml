@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="8"
+    android:orientation="vertical"
+    android:background="@drawable/shoopkeeper_background1"
+    tools:context=".Update_SpecificCustomer_Details">
+
+    <LinearLayout
+        android:layout_weight="2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="5dp"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/UpdateCustomer_Item"
+            android:layout_weight="1"
+            android:layout_margin="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:background="@drawable/cardview_background2"
+            android:textColor="#ffe"
+            android:textStyle="normal"
+            android:textAlignment="textStart"
+            android:textSize="17sp"
+            android:inputType="text"
+            android:hint="Update item description"
+            android:textColorHint="#ffe"
+
+            />
+
+        <EditText
+            android:id="@+id/UpdateCustomer_Price"
+            android:layout_weight="1"
+            android:layout_margin="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:background="@drawable/cardview_background2"
+            android:textColor="#ffe"
+            android:textStyle="normal"
+            android:textAlignment="textStart"
+            android:textSize="17sp"
+            android:inputType="numberSigned"
+            android:hint="Update price"
+            android:textColorHint="#ffe"
+
+            />
+
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_weight="6"
+        android:layout_width="match_parent"
+        android:gravity="center_horizontal"
+        android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/UpdateCustomer_details_Submit_btn"
+            android:layout_margin="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColor="#ffe"
+            android:textSize="20sp"
+            android:textAlignment="center"
+            android:textStyle="normal"
+            android:textAllCaps="false"
+            android:background="@drawable/background5_shape"
+            android:text="@string/btn_txt17"
+            />
+    </LinearLayout>
+</LinearLayout>
+
+

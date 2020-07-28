@@ -1,6 +1,8 @@
 package com.example.shopkeepers;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -86,8 +88,16 @@ public class CustomerDetails_Show extends AppCompatActivity implements View.OnCl
        Cursor cursor1 =mySQL_dataBase_helper.GetTotal_Amount_Specific_CustomerDetails(ID);
         while (cursor1.moveToNext()){
             String Total = cursor1.getString(1);
-            Total_amount.setText(Total);
-            Store_Calculated_total_amount(Total);
+            int value = Integer.parseInt(Total);
+            if (value>0){
+                Total_amount.setText("+"+Total);
+                String total = "+"+Total;
+                Store_Calculated_total_amount(total);
+            }
+            if(value<0){
+                Total_amount.setText(Total);
+                Store_Calculated_total_amount(Total);
+            }
         }
 
         // Update Total Amount to database Table 2
@@ -106,7 +116,50 @@ public class CustomerDetails_Show extends AppCompatActivity implements View.OnCl
         recyclerView.setAdapter(customerDetails_adepter);
         customerDetails_adepter.notifyDataSetChanged();
 
+        // attach swipe function to RecyclerView
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(simpleCallback);
+        itemTouchHelper.attachToRecyclerView(recyclerView);
+
     }
+
+   ItemTouchHelper.SimpleCallback simpleCallback = new ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT ) {
+       @Override
+       public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull ViewHolder viewHolder, @NonNull ViewHolder target) {
+           return false;
+       }
+
+       @Override
+       public void onSwiped(@NonNull ViewHolder viewHolder, int direction) {
+           int position = viewHolder.getAdapterPosition();
+           Cursor cursor = mySQL_dataBase_helper.GetSpecific_Customer_Details_All();
+           ArrayList<Integer> ID = new ArrayList<>();
+           while (cursor.moveToNext()){
+               ID.add(cursor.getInt(0));}
+
+           switch (direction){
+               case ItemTouchHelper.LEFT:
+
+                try {
+                    mySQL_dataBase_helper.DeleteData_From_Specific_Customer_table(ID.get(position));
+                    Toast.makeText(getApplicationContext(),"Delete successful "+ID.get(position),Toast.LENGTH_LONG).show();
+                    startActivity(new Intent(CustomerDetails_Show.this,CustomerDetails_Show.class));
+                }
+                catch (Exception e){
+                    e.getStackTrace();
+                    Toast.makeText(getApplicationContext(),"Delete Failed: "+e,Toast.LENGTH_LONG).show();
+                }
+                     break;
+
+               case ItemTouchHelper.RIGHT:
+                  int id  = ID.get(position);
+                  Intent intent = new Intent(CustomerDetails_Show.this,Update_SpecificCustomer_Details.class);
+                  intent.putExtra("ID",id);
+                  startActivity(intent);
+                   break;
+           }
+
+       }
+   };
 
     @Override
     public void onClick(View view) {

@@ -182,5 +182,35 @@ public class MySQL_DataBase_helper extends SQLiteOpenHelper {
         database.close();
     }
 
+    public void DeleteData_From_Specific_Customer_table(int Id){
+        SQLiteDatabase database = this.getWritableDatabase();
+        String sql = "DELETE FROM Customer_Details WHERE Customer_List_ID = ?";
+        SQLiteStatement sqLiteStatement = database.compileStatement(sql);
+        sqLiteStatement.executeUpdateDelete();
+        sqLiteStatement.bindDouble(1,(double)Id);
+        sqLiteStatement.execute();
+        database.close();
+    }
+    public Cursor GetSpecific_Customer_Details_All(){
+        SQLiteDatabase database = this.getReadableDatabase();
+        String sql = "SELECT * FROM Customer_Details";
+        Cursor cursor = database.rawQuery(sql,null);
+        return cursor;
+    }
+
+    public void SpecificCustomer_Details_Update(String item, String amount, String date, int CustomerID){
+        SQLiteDatabase Customer_details_database = this.getWritableDatabase();
+        String sql = "UPDATE Customer_Details SET ITEM = ?, Amount = ?, Date= ? WHERE Customer_List_ID = ?";
+        SQLiteStatement statement = Customer_details_database.compileStatement(sql);
+
+        statement.bindString(1,item);
+        statement.bindString(2,amount);
+        statement.bindString(3,date);
+        statement.bindDouble(4,(double)CustomerID);
+        statement.execute();
+        Customer_details_database.close();
+
+    }
+
 
 }

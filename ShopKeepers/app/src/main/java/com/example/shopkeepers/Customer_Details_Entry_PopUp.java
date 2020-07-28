@@ -76,7 +76,7 @@ public class Customer_Details_Entry_PopUp extends Activity {
                     Toast.makeText(getApplicationContext(), "Enter all the Information", Toast.LENGTH_SHORT).show();
                 } else {
                     try {
-                        mySQL_dataBase_helper.SpecificCustomer_Details_Insertion(Customer_Item, Customer_Amount, currentDate, Load_CustomerId());
+                        mySQL_dataBase_helper.SpecificCustomer_Details_Insertion(Customer_Item,"+"+Customer_Amount, currentDate, Load_CustomerId());
                         Toast.makeText(getApplicationContext(), "Customer due details Insert successful", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(Customer_Details_Entry_PopUp.this, CustomerDetails_Show.class);
                         startActivity(intent);

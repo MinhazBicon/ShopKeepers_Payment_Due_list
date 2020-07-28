@@ -18,18 +18,19 @@ import android.widget.Toast;
 import java.text.DateFormat;
 import java.util.Calendar;
 
-public class Customer_Payment extends Activity {
-     private EditText Payment;
-     private Button Payment_submit;
-     private int PayAmount;
+public class Update_SpecificCustomer_Details extends Activity {
+    private EditText updateItem, updatePrice;
+    private Button Update_submit_btn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_customer__payment);
+        setContentView(R.layout.activity_update__specific_customer__details);
 
-        //find edit text and button
-         Payment = findViewById(R.id.customer_payment);
-         Payment_submit = findViewById(R.id.payment_submit_btn);
+        updateItem = findViewById(R.id.UpdateCustomer_Item);
+        updatePrice = findViewById(R.id.UpdateCustomer_Price);
+        Update_submit_btn = findViewById(R.id.UpdateCustomer_details_Submit_btn);
+
+        //creating object of Customer_User_Details class and MySQL_DataBase_helper
 
         final MySQL_DataBase_helper mySQL_dataBase_helper = new MySQL_DataBase_helper(this);
 
@@ -40,67 +41,59 @@ public class Customer_Payment extends Activity {
         int width = displayMetrics.widthPixels;
         int height = displayMetrics.heightPixels;
         // getWindow().setBackgroundDrawableResource(flag);
-        getWindow().setLayout((int) (width*.7),(int) (height*.25));
+        getWindow().setLayout((int) (width * .7), (int) (height * .35));
 
         //setting the Popup window position
         WindowManager.LayoutParams params = getWindow().getAttributes();
         params.gravity = Gravity.CENTER;
         params.x = 0;
-        params.y = -80;
+        params.y = -70;
         getWindow().setAttributes(params);
 
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
-            String CustomerID = bundle.getString("ID");
+            int CustomerID = bundle.getInt("ID");
             Store_CustomerID(CustomerID);
         }
 
-        Payment_submit.setOnClickListener(new View.OnClickListener() {
+        Update_submit_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String pay_amount = Payment.getText().toString();
-                int Pay_amount = Integer.parseInt(pay_amount);
-                PayAmount = -Pay_amount;
-                String PAY_AMOUNT = String.valueOf(PayAmount);
-                String payWord = "Payment";
+                String Update_item = updateItem.getText().toString();
+                String Update_price = updatePrice.getText().toString();
                 //get current date from device
                 Calendar calendar = Calendar.getInstance();
                 String currentDate = DateFormat.getDateInstance().format(calendar.getTime());
-                if (PAY_AMOUNT.isEmpty()){
-                    Toast.makeText(getApplicationContext(),"Please enter Pay Amount",Toast.LENGTH_SHORT).show();
+
+                if (Update_item.isEmpty() && Update_price.isEmpty()) {
+                    Toast.makeText(getApplicationContext(), "Enter all the Information", Toast.LENGTH_SHORT).show();
+                } else {
+                    try {
+                        mySQL_dataBase_helper.SpecificCustomer_Details_Update(Update_item,"+"+Update_price, currentDate, Load_CustomerId());
+                        Toast.makeText(getApplicationContext(), "Customer due details Update successful", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(Update_SpecificCustomer_Details.this, CustomerDetails_Show.class);
+                        startActivity(intent);
+                        finish();
+                    } catch (Exception e) {
+                        e.getStackTrace();
+                        Toast.makeText(getApplicationContext(), "Customer due details Update failed", Toast.LENGTH_SHORT).show();
+                    }
                 }
-                else {
-                   try {
-                       mySQL_dataBase_helper.SpecificCustomer_Details_Insertion(payWord, PAY_AMOUNT, currentDate, Load_CustomerId());
-                       Toast.makeText(getApplicationContext(), "Customer due Payment successful", Toast.LENGTH_SHORT).show();
-                       Intent intent = new Intent(Customer_Payment.this, CustomerDetails_Show.class);
-                       startActivity(intent);
-                       finish();
-                   }catch (Exception e){
-                       e.getStackTrace();
-                       Toast.makeText(getApplicationContext(),"Payment Accept failed",Toast.LENGTH_SHORT).show();
-                   }
-
-                }
-
-
             }
         });
-
-
     }
 
-    public void Store_CustomerID(String Id) {
+
+    public void Store_CustomerID(int Id) {
         SharedPreferences ID = getSharedPreferences("Id", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = ID.edit();
-        editor.putString("LastID",Id);
+        editor.putInt("LastID",Id);
         editor.commit();
     }
 
-    public String Load_CustomerId(){
+    public int Load_CustomerId(){
         SharedPreferences ID = getSharedPreferences("Id",Context.MODE_PRIVATE);
-        String CustomerId = ID.getString("LastID","Id Not found");
+        int CustomerId = ID.getInt("LastID",0);
         return CustomerId;
     }
-
 }

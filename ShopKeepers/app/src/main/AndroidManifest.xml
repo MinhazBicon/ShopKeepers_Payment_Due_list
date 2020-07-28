@@ -36,7 +36,11 @@
             android:name=".CustomerName_entry_Popup"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.PopUpTheme2" />
-        <activity android:name=".Customer_Payment"
+        <activity
+            android:name=".Customer_Payment"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.PopUpTheme2" />
+        <activity android:name=".Update_SpecificCustomer_Details"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.PopUpTheme2"></activity>
     </application>

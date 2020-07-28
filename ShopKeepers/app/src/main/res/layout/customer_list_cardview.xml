@@ -14,12 +14,11 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal"
-
             android:weightSum="4">
 
             <TextView
                 android:id="@+id/customerLisName_textView"
-                android:layout_weight="1"
+                android:layout_weight="1.6"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:padding="10dp"
@@ -27,14 +26,14 @@
                 android:textColor="#ffe"
                 android:textAlignment="textStart"
                 android:text="Name"
-                android:textSize="25sp"
-                android:textStyle="bold|italic"
+                android:textSize="22sp"
+                android:textStyle="bold"
                 android:textIsSelectable="false"
                 />
 
             <TextView
                 android:id="@+id/customerList_totalAMount_TextView"
-                android:layout_weight="3"
+                android:layout_weight="2.4"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:padding="10dp"
@@ -42,7 +41,7 @@
                 android:textColor="#ffe"
                 android:textAlignment="center"
                 android:text="0"
-                android:textSize="25sp"
+                android:textSize="22sp"
                 android:textStyle="bold"
                 android:textIsSelectable="true"
                 />
